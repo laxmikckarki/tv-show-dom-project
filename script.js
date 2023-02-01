@@ -5,27 +5,50 @@ function setup() {
   makePageForEpisodes(allEpisodes);
 }
 
-function makePageForEpisodes(episodeList) {
+function makeSeasonAndEpisodes(episode) {
+  const {season, number} = episode;
+  const paddedSeason = season.toString().padStart(2, '0');
+  const paddedEpisode = number.toString().padStart(2, '0');
+    
+  return `S${paddedSeason}E${paddedEpisode}`;
+    }
+
+function makePageForEpisodes(episodeList){
   const rootElem = document.getElementById("root");
- // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-  console.log(episodeList);
-  for(const episode of episodeList) {
-  
-    const div = document.createElement('div')
-    const image = document.createElement('img')
-    image.src = episode.image.medium
-    div.appendChild(image)
-    div.innerHTML+= `${episode.name}, ${episode.season}, ${episode.number}`
-    rootElem.appendChild(div);
-    const season = 1;
-    const episode = 10;
-    season.episode+= `S${season.toString().padStart(2, 0)}E${episode}`
+  rootElem.innerHTML ="";
+  const countParagraph = document.createElement('p');
+  countParagraph.innerText = `Showing ${episodeList.length} episode`;
+  rootElem.appendChild(countParagraph);
+  episodeList.forEach((episode) => {
+    //add season and episode and name
+    const paragraph = document.createElement('p');
+    paragraph.textContent = `${makeSeasonAndEpisodes(episode)}: ${episode.name}`;
+    rootElem.appendChild(paragraph);
 
-    }
+    //add image
 
+    const image = document.createElement('img');
+    image.src = episode.image.medium;
+   rootElem.appendChild(image);
 
-    }
+   // add the summary, episode summary
+    rootElem.innerHTML+= episode.summary;
+  });
+}
 
-
+const searchInPut = document.getElementById('search-input');
+searchInPut.addEventListener('input', (event) => {
+  const searchString = event.target.value.toLowerCase();
+  const filteredEpisode = getAllEpisodes().filter((episode) => {
+  //localcompare neater
+      return (
+        episode.summary.toLowerCase().includes(searchString) || 
+        episode.name.toLowerCase().includes(searchString)
+      );
+    });
+  makePageForEpisodes(filteredEpisode);
+});
 
 window.onload = setup;
+
+
