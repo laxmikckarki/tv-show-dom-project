@@ -40,7 +40,7 @@ const searchInPut = document.getElementById('search-input');
 searchInPut.addEventListener('input', (event) => {
   const searchString = event.target.value.toLowerCase();
   const filteredEpisode = getAllEpisodes().filter((episode) => {
-  //localcompare neater
+
       return (
         episode.summary.toLowerCase().includes(searchString) || 
         episode.name.toLowerCase().includes(searchString)
