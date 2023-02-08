@@ -50,5 +50,23 @@ searchInPut.addEventListener('input', (event) => {
 });
 
 window.onload = setup;
+/*
+fetch(url)
+.then((res) => res.json())
+.then((data)=>console.log(data))
+console.log('from the promise chain');
+console.log(data.results[0].name.first)
+.catch((err) => console.error(err));
 
-
+//or
+async function getTheData(){
+  try{
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log('from the async function');
+  console.log(data.results[0].name.first);
+} catch (err){
+console.error(err);
+}
+}
+getTheData();*/
