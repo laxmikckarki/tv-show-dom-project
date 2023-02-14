@@ -1,16 +1,36 @@
 #root {
-color: red;
+color: black;
 margin: 0;
 padding: 0;
 box-sizing: border-box;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+align-items: center;
+height: 100%;
+width: 100%;
+border-radius: 0% 100% 0% 100% / 73% 0% 100% 27%;
+margin-bottom: 10px;
+}
+body{
+    background-color: grey;
+}
+#episode-list {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
 }
 
-header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100px;
-    width: 150px;
-    border-radius: 0% 100% 0% 100% / 73% 0% 100% 27%;
-    margin-bottom: 10px;
+
+.episode{
+    width: 32%;
+    background-color: white;
+    margin-bottom: 1em;
+
+}
+p.episode-title {
+    border: 2px solid black;
+    margin-top: 0;
+    padding: 10px;
+    text-align: center;
 }

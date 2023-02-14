@@ -1,7 +1,96 @@
 //You can edit ALL of the code here
-const url = "https://api.tvmaze.com/shows/82/episodes";
+
+//level 100
+function setup() {
+  const allEpisodes = getAllEpisodes();
+  makePageForEpisodes(allEpisodes);
+  settingSearchInput(allEpisodes);
+}
+
+function makePageForEpisodes(episodeList) {
+  const rootElem = document.getElementById("root");
+  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+
+
+  episodeList.forEach((list) => {
+    const episodeDiv = document.createElement('div');
+    episodeDiv.classList.add('episode-div');
+
+    const  episodeName = document.createElement('h1');
+episodeName.classList.add('episode-name');
+episodeName.innerText = list.name;
+const season = list.season.toString().padStart(2, '0');
+const number = list.number.toString().padStart(2, '0');
+    const seasonAndEpisode = document.createElement('h2');
+    
+    
+   seasonAndEpisode.classList.add('episode-season');
+
+seasonAndEpisode.innerText = `S${season}E${number}`;
+    const episodeImage = document.createElement('img');
+    episodeImage.classList.add('episode-img');
+episodeImage.innerText = list.image.medium;
+    const episodeSummary = document.createElement('p');
+    episodeSummary.classList.add('episode-summary');
+    episodeSummary.innerHTML = list.summary;
+  
+    rootElem.appendChild(episodeDiv);
+   episodeDiv.appendChild(episodeName);
+   episodeDiv.appendChild(seasonAndEpisode);
+   episodeDiv.appendChild(episodeImage);
+   episodeDiv.appendChild(episodeSummary);
+
+  })
+}
+//level 200
+
+function settingSearchInput(episode){
+  const searchInput = document.getElementById('search-input');
+
+episode.filter((element) => {
+  const name = element.name;
+  const summary = element.summary;
+  const searchString = `${name} ${summary}`;
+  const searchInPutValue = searchInput.value.toLowerCase();
+return searchInput.value.includes;
+console.log(searchString);
+
+}) 
+
+}
+  
+
+
+
+window.onload = setup;
+
+/*const url = "https://api.tvmaze.com/shows/82/episodes";
 let allEpisodes = [];
 
+
+//level 400
+async function allShows(){
+  try {
+    let response = await fetch("https://api.tvmaze.com/shows")
+    let data = await response.json()
+    return data
+  } catch (error) {
+    
+  }
+}
+//async function setup() {
+  // for (let { id: idNum } of allShows) {
+  try {
+    const response = await fetch(`https://api.tvmaze.com/shows/82/episodes`);
+    const objectResponse = await response.json();
+    selectShow(allShows);
+    displayEpisodes(objectResponse);
+    search(objectResponse);
+    select(objectResponse);
+  } catch (error) {
+    console.log(error);
+  }
+  
 function setup() {
   fetch(url)
   .then((res) => res.json())
@@ -24,27 +113,33 @@ function makeSeasonAndEpisodes(episode) {
 function makePageForEpisodes(episodeList){
   const rootElem = document.getElementById("root");
   const selectElem =document.getElementById('select-input');
-  rootElem.innerHTML ="";
+  const episodesParent = document.getElementById('episode-list');
+  episodesParent.innerHTML ="";
 
   const countParagraph = document.createElement('p');
-  countParagraph.innerText = `Showing ${episodeList.length} episode`;
-  rootElem.appendChild(countParagraph);
+  countParagraph.innerText = `Showing ${episodes.length} episode`;
+  rootElem.prepend(countParagraph);
   episodeList.forEach((episode) => {
     
     //add season and episode and name
+const div = document.createElement('div');
+div.setAttribute('class', 'episode');
+episodesParent.appendChild(div);
 
     const paragraph = document.createElement('p');
+    paragraph.classList.add('episode-title')
     paragraph.textContent = `${makeSeasonAndEpisodes(episode)}: ${episode.name}`;
-    rootElem.appendChild(paragraph);
+    div.appendChild(paragraph);
 
+    
     //add image
 
     const image = document.createElement('img');
     image.src = episode.image.medium;
-   rootElem.appendChild(image);
+   div.appendChild(image);
 
    // add the summary, episode summary
-    rootElem.innerHTML+= episode.summary;
+    div.innerHTML+= episode.summary;
  
 
 // also, one more thing, add it to the select element as an option
