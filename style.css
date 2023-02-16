@@ -1,36 +1,52 @@
-#root {
-color: black;
+body {
+    background-color: grey;
+    box-sizing: border-box
+}
+
+  #root {
+ color: black;
 margin: 0;
-padding: 0;
-box-sizing: border-box;
+padding: 0;;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-around;
 align-items: center;
 height: 100%;
-width: 100%;
+width: 3100%;
 border-radius: 0% 100% 0% 100% / 73% 0% 100% 27%;
 margin-bottom: 10px;
-}
-body{
-    background-color: grey;
-}
-#episode-list {
+}  
+
+ #episode-list {
 display: flex;
 flex-wrap: wrap;
 justify-content: space-between;
+} 
+/* 
+.episode-wrapper {
+    display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+column-gap: 10;
+    row-gap: 10;
 }
 
+.episode-div {
+ width: 32%;
+background-color: white;
+margin-bottom: 1em; 
+background-color: var(--light-grey);
+border: 4px dotted red
+  display: grid;
+  grid-template-rows: auto auto 2fr;
+  row-gap: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 10px #5c5959;
+} */
 
-.episode{
-    width: 32%;
-    background-color: white;
-    margin-bottom: 1em;
-
-}
 p.episode-title {
     border: 2px solid black;
     margin-top: 0;
     padding: 10px;
     text-align: center;
 }
+

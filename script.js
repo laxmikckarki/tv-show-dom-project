@@ -11,7 +11,8 @@ function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
 
-
+const episodeWrapper = document.createElement('div');
+    episodeWrapper.classList.add('episode-wrapper');
   episodeList.forEach((list) => {
     const episodeDiv = document.createElement('div');
     episodeDiv.classList.add('episode-div');
@@ -21,9 +22,9 @@ episodeName.classList.add('episode-name');
 episodeName.innerText = list.name;
 const season = list.season.toString().padStart(2, '0');
 const number = list.number.toString().padStart(2, '0');
-    const seasonAndEpisode = document.createElement('h2');
     
-    
+const seasonAndEpisode = document.createElement('h2');
+     
    seasonAndEpisode.classList.add('episode-season');
 
 seasonAndEpisode.innerText = `S${season}E${number}`;
@@ -33,8 +34,9 @@ episodeImage.innerText = list.image.medium;
     const episodeSummary = document.createElement('p');
     episodeSummary.classList.add('episode-summary');
     episodeSummary.innerHTML = list.summary;
-  
-    rootElem.appendChild(episodeDiv);
+
+  episodeWrapper.appendChild(episodeDiv)
+    rootElem.appendChild(episodeWrapper);
    episodeDiv.appendChild(episodeName);
    episodeDiv.appendChild(seasonAndEpisode);
    episodeDiv.appendChild(episodeImage);
@@ -46,19 +48,22 @@ episodeImage.innerText = list.image.medium;
 
 function settingSearchInput(episode){
   const searchInput = document.getElementById('search-input');
-
-episode.filter((element) => {
+searchInput.addEventListener('input', (event) => {
+let searchArray = episode.filter((element) => {
   const name = element.name;
   const summary = element.summary;
   const searchString = `${name} ${summary}`;
   const searchInPutValue = searchInput.value.toLowerCase();
-return searchInput.value.includes;
-console.log(searchString);
 
+return  searchString.toLowerCase().includes(searchInPutValue); 
+   
+      
 }) 
+  console.log(searchArray);
+  makePageForEpisodes(searchArray);
 
+   }) 
 }
-  
 
 
 
